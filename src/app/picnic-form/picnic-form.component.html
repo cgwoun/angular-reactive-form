@@ -1,0 +1,124 @@
+<div class="container" id="top">
+  <br>
+  <div class="text-center">
+    <h1>*** Boeing Company Picnic ***</h1>
+    <h3>August 10, 2017 </h3>
+    <p><i>(Please also list any dietary concerns, i.e., nuts or meat products)</i></p>
+  </div>
+  <hr>
+
+  <div class="container">
+    <div class="row">
+      <h2 class="text-center d-inline col-6">
+        <u>Company Provided Items</u>
+      </h2>
+      <h2 class="text-center d-inline col-6">
+        <u>Drinks</u>
+      </h2>
+    </div>
+    <div class="row">
+      <div class="d-inline-block col-6">
+        <div class="text-center" *ngFor="let cpi of item['CompanyProvided']">
+          <div class="row">
+            <h5 class="d-inline col-6">{{cpi.item}}</h5>
+            <h5 class="d-inline col-6">{{cpi.name}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="d-inline-block col-6">
+        <div class="text-center" *ngFor="let drink of item['Drinks']">
+          <div class="row">
+            <h5 class="d-inline col-6">{{drink.item}}</h5>
+            <h5 class="d-inline col-6">{{drink.name}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container">
+    <div class="row">
+      <h2 class="text-center d-inline col-6">
+        <u>Games</u>
+      </h2>
+      <h2 class="text-center d-inline col-6">
+        <u>Side</u>
+      </h2>
+    </div>
+    <div class="row">
+      <div class="d-inline-block col-6">
+        <div class="text-center" *ngFor="let game of item['Games']">
+          <div class="row">
+            <h5 class="d-inline col-6">{{game.item}}</h5>
+            <h5 class="d-inline col-6">{{game.name}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="d-inline-block col-6">
+        <div class="text-center" *ngFor="let side of item['Side']">
+          <div class="row">
+            <h5 class="d-inline col-6">{{side.item}}</h5>
+            <h5 class="d-inline col-6">{{side.name}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container">
+    <h2 class="text-center">
+      <u>Dessert</u>
+    </h2>
+    <div class="row text-center" *ngFor="let dessert of item['Dessert']">
+      <h5 class="d-inline col-6">{{dessert.item}}</h5>
+      <h5 class="d-inline col-6">{{dessert.name}}</h5>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="container text-center">
+    <form [formGroup]="picnicForm">
+ <div class="form-group col-2 d-inline-block">
+        <span>Category: </span>
+        <label for="category">
+          <select class="form-control" id="category" name="category">
+            <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-group col-3 d-inline-block">
+        <span>Item:</span>
+        <label>
+          <input
+          class="form-control"
+          type="text"
+          name="item"
+          placeholder="Item Bringing Here">
+        </label>
+      </div>
+      <div class="form-group col-3 d-inline-block">
+        <span>Name:</span>
+        <label>
+          <input
+          class="form-control"
+          type="text"
+          name="name"
+          placeholder="Your Name Here">
+        </label>
+      </div>
+
+      <button type="submit" class="d-inline-block btn btn-primary">Submit</button> 
+    </form>
+  </div>
+
+
+</div>
+
+
+
+
