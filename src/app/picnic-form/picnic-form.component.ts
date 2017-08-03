@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-picnic-form',
@@ -7,6 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./picnic-form.component.css']
 })
 export class PicnicFormComponent implements OnInit {
+  picnicForm: FormGroup;
 
   //Different Picnic Categories
   categories = ['Dessert','Games','Drinks','Side'];
@@ -19,14 +20,15 @@ export class PicnicFormComponent implements OnInit {
     'CompanyProvided':[]
   };
 
-  picnicForm = new FormGroup({
-    item: new FormControl(),
-    name: new FormControl()
-  });
-
   constructor() { }
 
   ngOnInit() {
+    this.picnicForm = new FormGroup({
+      category: new FormControl('',Validators.required),
+      item: new FormControl('',[Validators.required,Validators.minLength(2)]),
+      name: new FormControl('',[Validators.required,Validators.minLength(2)])
+    });
+
     this.item['Games'] = [{'item':'Bean Bag Toss','name':'Jeff C.'},{'item':'Piñata ;)','name':'Chang G.'}];
     this.item['Drinks'] = [];
     this.item['Dessert'] = [{'item':'Hot Fudge Sundaes with Sprinkles 0_o','name':'Oscar K.'}];
@@ -38,8 +40,12 @@ export class PicnicFormComponent implements OnInit {
     ];
   }
 
-  onSubmit(){
-    console.log("Inside submit");
+  onSubmit({value,valid}:{value:FormGroup,valid:boolean}){
+    this.item[value['category']].push(
+      {'item':value['item'],'name':value['name']}
+    );
+    this.picnicForm.reset();
   }
 
 }
+

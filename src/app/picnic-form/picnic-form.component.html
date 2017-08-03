@@ -82,11 +82,11 @@
   <hr>
 
   <div class="container text-center">
-    <form [formGroup]="picnicForm">
- <div class="form-group col-2 d-inline-block">
+    <form (ngSubmit)="onSubmit(picnicForm)" [formGroup]="picnicForm">
+      <div class="form-group col-2 d-inline-block">
         <span>Category: </span>
         <label for="category">
-          <select class="form-control" id="category" name="category">
+          <select class="form-control" id="category" formControlName="category">
             <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
           </select>
         </label>
@@ -97,7 +97,7 @@
           <input
           class="form-control"
           type="text"
-          name="item"
+          formControlName="item"
           placeholder="Item Bringing Here">
         </label>
       </div>
@@ -107,18 +107,14 @@
           <input
           class="form-control"
           type="text"
-          name="name"
+          formControlName="name"
           placeholder="Your Name Here">
         </label>
       </div>
-
-      <button type="submit" class="d-inline-block btn btn-primary">Submit</button> 
+      <button type="submit" [disabled]="picnicForm.invalid" class="d-inline-block btn btn-primary">Submit</button>
     </form>
   </div>
-
-
 </div>
-
-
+  
 
 
