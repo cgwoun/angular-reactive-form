@@ -90,6 +90,11 @@
             <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
           </select>
         </label>
+        <div
+  class="error"
+  *ngIf="picnicForm.get('category').hasError('required') && picnicForm.get('category').touched">
+  Category is required
+</div>
       </div>
       <div class="form-group col-3 d-inline-block">
         <span>Item:</span>
@@ -100,6 +105,16 @@
           formControlName="item"
           placeholder="Item Bringing Here">
         </label>
+        <div
+  class="error"
+  *ngIf="picnicForm.get('item').hasError('required') && picnicForm.get('item').touched">
+  Item is required
+</div>
+<div
+  class="error"
+  *ngIf="picnicForm.get('item').hasError('minlength') && picnicForm.get('item').touched">
+  Minimum of 2 characters
+</div>
       </div>
       <div class="form-group col-3 d-inline-block">
         <span>Name:</span>
@@ -110,6 +125,16 @@
           formControlName="name"
           placeholder="Your Name Here">
         </label>
+        <div
+  class="error"
+  *ngIf="picnicForm.get('name').hasError('required') && picnicForm.get('name').touched">
+  Name is required
+</div>
+<div
+  class="error"
+  *ngIf="picnicForm.get('name').hasError('minlength') && picnicForm.get('name').touched">
+  Minimum of 2 characters
+</div>
       </div>
       <button type="submit" [disabled]="picnicForm.invalid" class="d-inline-block btn btn-primary">Submit</button>
     </form>

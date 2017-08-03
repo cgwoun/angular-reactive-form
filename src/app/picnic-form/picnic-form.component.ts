@@ -48,4 +48,3 @@ export class PicnicFormComponent implements OnInit {
   }
 
 }
-
